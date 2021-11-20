@@ -46,14 +46,14 @@ void UnitTest() {
 
 		Parser final = Parser(p.GetTokensAfterPreparing(), 0);
 
-		std::cout << " Ðàñïîçíàíî êàê ";
+		std::cout << " Ð Ð°ÑÐ¿Ð¾Ð·Ð½Ð°Ð½Ð¾ ÐºÐ°Ðº ";
 		for (int i = 0; i < final.GetTokens().size(); i++) {
 			std::cout << final.GetTokens()[i].GetTokenInterpretation();
 		}
 		std::cout << std::endl;
 
 		double result = final.Run(0, final.GetTokens().size() - 1);
-		std::cout << " Îòâåò " << result << " Îæèäàåìûé ðåçóëüòàò " << Expetced_result[i]<<std::endl<<std::endl;
+		std::cout << " ÐžÑ‚Ð²ÐµÑ‚ " << result << " ÐžÐ¶Ð¸Ð´Ð°ÐµÐ¼Ñ‹Ð¹ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚ " << Expetced_result[i]<<std::endl<<std::endl;
 	}
 }
 
@@ -66,12 +66,12 @@ int main() {
 
 	/*std::string input;
 	std::string x;
-	std::cout << " Ââåäèòå ôóíêöèþ " << std::endl;
+	std::cout << " Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ„ÑƒÐ½ÐºÑ†Ð¸ÑŽ " << std::endl;
 	std::getline(std::cin, input);
 
 	input = std::regex_replace(input, std::regex("\\."), ",");
 
-	std::cout << " Ââåäèòå çíà÷åíèå ïåðåìåííîé õ " << std::endl;
+	std::cout << " Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ð¾Ð¹ Ñ… " << std::endl;
 	std::getline(std::cin, x);
 	x = std::regex_replace(x, std::regex("\\."), ",");
 
@@ -84,14 +84,14 @@ int main() {
 
 	Parser final = Parser(p.GetTokensToPreparing(), 0);
 
-	std::cout << " Ðàñïîçíàíî êàê ";
+	std::cout << " Ð Ð°ÑÐ¿Ð¾Ð·Ð½Ð°Ð½Ð¾ ÐºÐ°Ðº ";
 	for (int i = 0; i < final.GetTokens().size(); i++) {
 		std::cout << final.GetTokens()[i].GetTokenInterpretation();
 	}
 	std::cout << std::endl;
 
 	double result = final.Run(0, final.GetTokens().size() - 1);
-	std::cout << " Îòâåò " << result;*/
+	std::cout << " ÐžÑ‚Ð²ÐµÑ‚ " << result;*/
 
 	return 0;
 }
