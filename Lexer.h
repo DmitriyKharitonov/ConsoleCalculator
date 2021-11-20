@@ -21,14 +21,14 @@ public:
 		std::string string_to_analysis = code;
 		
 		while (position < code.length()) {
-			for (int i = 0; i < Tokens.size(); i++) {//поочередно сравниваем текущее выражение со списком всех поддерживаемых токенов
+			for (int i = 0; i < Tokens.size(); i++) {//РїРѕРѕС‡РµСЂРµРґРЅРѕ СЃСЂР°РІРЅРёРІР°РµРј С‚РµРєСѓС‰РµРµ РІС‹СЂР°Р¶РµРЅРёРµ СЃРѕ СЃРїРёСЃРєРѕРј РІСЃРµС… РїРѕРґРґРµСЂР¶РёРІР°РµРјС‹С… С‚РѕРєРµРЅРѕРІ
 				Tokentype token_type = Tokens[i];
 				std::regex regular(Tokens[i].GetRegax());
 				std::regex_search(string_to_analysis, result, regular);
 				if (result.length() != 0) {
 					Token newToken;
-					if (token_type == Number) {//для всех токенок, кроме Number, интерпретация известна заранее
-											   //до анализа кода мы не знаем, какое именно число встретим
+					if (token_type == Number) {//РґР»СЏ РІСЃРµС… С‚РѕРєРµРЅРѕРє, РєСЂРѕРјРµ Number, РёРЅС‚РµСЂРїСЂРµС‚Р°С†РёСЏ РёР·РІРµСЃС‚РЅР° Р·Р°СЂР°РЅРµРµ
+								   //РґРѕ Р°РЅР°Р»РёР·Р° РєРѕРґР° РјС‹ РЅРµ Р·РЅР°РµРј, РєР°РєРѕРµ РёРјРµРЅРЅРѕ С‡РёСЃР»Рѕ РІСЃС‚СЂРµС‚РёРј
 						newToken = Token(token_type, result.str(), result.str(), position);
 					}
 					else newToken = Token(token_type, result.str(), position);
@@ -40,8 +40,8 @@ public:
 				if (position >= code.length()) break;
 			}
 
-			if (result[0].length() == 0) {//если ни один из поддерживаемых токенок не подошел
-				std::cout<<"Некорректное выражение"<< code[position]<<" в символе №" <<std::to_string(position);
+			if (result[0].length() == 0) {//РµСЃР»Рё РЅРё РѕРґРёРЅ РёР· РїРѕРґРґРµСЂР¶РёРІР°РµРјС‹С… С‚РѕРєРµРЅРѕРє РЅРµ РїРѕРґРѕС€РµР»
+				std::cout<<"ГЌГҐГЄГ®Г°Г°ГҐГЄГІГ­Г®ГҐ ГўГ»Г°Г Г¦ГҐГ­ГЁГҐ"<< code[position]<<" Гў Г±ГЁГ¬ГўГ®Г«ГҐ В№" <<std::to_string(position);
 				exit(1);
 			}
 		}
