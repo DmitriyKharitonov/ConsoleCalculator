@@ -4,8 +4,8 @@
 class Token {
 private:
 	Tokentype type;
-	std::string token_interpretation; //нужно для неоднозначных трактовок токенов
-									  //c0s(x) -> cos(x), asin(x) -> arcsin(x)
+	std::string token_interpretation; //РЅСѓР¶РЅРѕ РґР»СЏ РЅРµРѕРґРЅРѕР·РЅР°С‡РЅС‹С… С‚СЂР°РєС‚РѕРІРѕРє С‚РѕРєРµРЅРѕРІ
+					  //c0s(x) -> cos(x), asin(x) -> arcsin(x)
 	std::string text;
 	int pair_position = -1;
 	int position;
@@ -22,7 +22,7 @@ public:
 		text = b;
 		position = c;
 	}
-	Token(Tokentype a, std::string b,  std::string c, int d) {//для токенов, с заранее неизветсным представлением. Например - Number
+	Token(Tokentype a, std::string b,  std::string c, int d) {//РґР»СЏ С‚РѕРєРµРЅРѕРІ, СЃ Р·Р°СЂР°РЅРµРµ РЅРµРёР·РІРµС‚СЃРЅС‹Рј РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµРј. РќР°РїСЂРёРјРµСЂ - Number
 		type = a;
 		token_interpretation = b;
 		text = c;
