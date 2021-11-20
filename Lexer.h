@@ -41,7 +41,7 @@ public:
 			}
 
 			if (result[0].length() == 0) {//если ни один из поддерживаемых токенок не подошел
-				std::cout<<"Íåêîððåêòíîå âûðàæåíèå"<< code[position]<<" â ñèìâîëå ¹" <<std::to_string(position);
+				std::cout<<"Некорректное выражение"<< code[position]<<" в символе № " <<std::to_string(position);
 				exit(1);
 			}
 		}
