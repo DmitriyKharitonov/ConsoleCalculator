@@ -5,7 +5,7 @@ private:
 	std::string name;
 	std::string regax;
 	std::string interpretation;
-	int precedence; //подробнее в Runner.h функция RunBinOp()
+	int precedence; //РїРѕРґСЂРѕР±РЅРµРµ РІ Runner.h С„СѓРЅРєС†РёСЏ RunBinOp()
 public:
 	Tokentype() {
 		name = "";
@@ -43,8 +43,8 @@ bool operator==(Tokentype& type1, Tokentype& type2) {
 	return (type1.name == type2.name);
 }
 
-//подерживаются различные виды написания
-//а также возможные ошибки
+//РїРѕРґРµСЂР¶РёРІР°СЋС‚СЃСЏ СЂР°Р·Р»РёС‡РЅС‹Рµ РІРёРґС‹ РЅР°РїРёСЃР°РЅРёСЏ
+//Р° С‚Р°РєР¶Рµ РІРѕР·РјРѕР¶РЅС‹Рµ РѕС€РёР±РєРё
 Tokentype Nothing = Tokentype();
 Tokentype Pi_Constant = Tokentype("Pi_Constant", "pi", "^(pi)", 100);
 Tokentype E_Constant = Tokentype("E_Constant", "e", "^([e^exp])", 100);
@@ -68,5 +68,5 @@ Tokentype Exp = Tokentype("Math_function_exp", "exp", "^(exp)", 100);
 Tokentype Lpar = Tokentype("Lpar", "(", "^[\\(]", 100);
 Tokentype Rpar = Tokentype("Rpar", ")", "^[\\)]", 0);
 
-//список всех имеющихся токенов
+//СЃРїРёСЃРѕРє РІСЃРµС… РёРјРµСЋС‰РёС…СЃСЏ С‚РѕРєРµРЅРѕРІ
 std::vector <Tokentype> Tokens{Space, Number, Variable, Plus, Minus, Mult, Div, Power, Sqrt, Sin, Cos, Tg, Arcsin, Arccos, Arctg, Ln, Exp, Lpar,Rpar, Pi_Constant, E_Constant};
