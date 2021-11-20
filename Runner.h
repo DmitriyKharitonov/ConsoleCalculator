@@ -8,7 +8,7 @@ public:
 		tokens_after_preparing = a;
 	}
 
-	void Preparation(std::string variable_value) {//чтобы случайно не забыть вызвать одну из функций, собрал их в одном месте
+	void Preparation(std::string variable_value) {//С‡С‚РѕР±С‹ СЃР»СѓС‡Р°Р№РЅРѕ РЅРµ Р·Р°Р±С‹С‚СЊ РІС‹Р·РІР°С‚СЊ РѕРґРЅСѓ РёР· С„СѓРЅРєС†РёР№, СЃРѕР±СЂР°Р» РёС… РІ РѕРґРЅРѕРј РјРµСЃС‚Рµ
 		MultAdd();
 		iterator();
 		initializingConstant();
@@ -23,23 +23,23 @@ public:
 		}
 	}
 	
-	void MultAdd() {//не очень красиво, но переделать пока не придумал
+	void MultAdd() {//РЅРµ РѕС‡РµРЅСЊ РєСЂР°СЃРёРІРѕ, РЅРѕ РєР°Рє РїРµСЂРµРґРµР»Р°С‚СЊ РїРѕРєР° РЅРµ РїСЂРёРґСѓРјР°Р»
 		
 		std::vector <Tokentype> insert_multiplication = {Lpar, Pi_Constant, E_Constant, Variable, Sqrt, Sqrt, Sin, Cos, Tg, Arcsin, Arccos, Arctg, Ln, Exp};
 
 		for (int i = 0; i < insert_multiplication.size(); i+=2) {
-			insert_multiplication.insert(insert_multiplication.begin() + i, Number); //получаем все пары токенов, между которыми может быть пропущен знак умножения
-																					 //пример: Number * Lpar, Number * Pi_Constant, Number * E_Constant...
-																					 //в записях типа xcos(x) скорее всего уже будет стоять знак умножения, 
-																					 //так как такое написание - xcos(x) - не интуитивно
-																					 //на будущее: в таких случаях нужно выдавать предупреждение.
-																					 //Все промежуточные вычисления до cos(x) будут утеряны
+			insert_multiplication.insert(insert_multiplication.begin() + i, Number); //РїРѕР»СѓС‡Р°РµРј РІСЃРµ РїР°СЂС‹ С‚РѕРєРµРЅРѕРІ, РјРµР¶РґСѓ РєРѕС‚РѕСЂС‹РјРё РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСЂРѕРїСѓС‰РµРЅ Р·РЅР°Рє СѓРјРЅРѕР¶РµРЅРёСЏ
+												 //РїСЂРёРјРµСЂ: Number * Lpar, Number * Pi_Constant, Number * E_Constant...
+												 //РІ Р·Р°РїРёСЃСЏС… С‚РёРїР° xcos(x) СЃРєРѕСЂРµРµ РІСЃРµРіРѕ СѓР¶Рµ Р±СѓРґРµС‚ СЃС‚РѕСЏС‚СЊ Р·РЅР°Рє СѓРјРЅРѕР¶РµРЅРёСЏ, 
+												 //С‚Р°Рє РєР°Рє С‚Р°РєРѕРµ РЅР°РїРёСЃР°РЅРёРµ - xcos(x) - РЅРµ РёРЅС‚СѓРёС‚РёРІРЅРѕ
+												 //РЅР° Р±СѓРґСѓС‰РµРµ: РІ С‚Р°РєРёС… СЃР»СѓС‡Р°СЏС… РЅСѓР¶РЅРѕ РІС‹РґР°РІР°С‚СЊ РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёРµ.
+												 //Р’СЃРµ РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅС‹Рµ РІС‹С‡РёСЃР»РµРЅРёСЏ РґРѕ cos(x) Р±СѓРґСѓС‚ СѓС‚РµСЂСЏРЅС‹
 		}
-		//еще одна возможная ситуация - )( - Пример: (5+2)(6+8)
+		//РµС‰Рµ РѕРґРЅР° РІРѕР·РјРѕР¶РЅР°СЏ СЃРёС‚СѓР°С†РёСЏ - )( - РџСЂРёРјРµСЂ: (5+2)(6+8)
 		insert_multiplication.push_back(Rpar);
 		insert_multiplication.push_back(Lpar);
 
-		for (int i = 0; i < tokens_after_preparing.size()-1; i++) {//ищем совпадение между парой имеющихся токенов и парой токенов, между которыми может стоять знак унможения
+		for (int i = 0; i < tokens_after_preparing.size()-1; i++) {//РёС‰РµРј СЃРѕРІРїР°РґРµРЅРёРµ РјРµР¶РґСѓ РїР°СЂРѕР№ РёРјРµСЋС‰РёС…СЃСЏ С‚РѕРєРµРЅРѕРІ Рё РїР°СЂРѕР№ С‚РѕРєРµРЅРѕРІ, РјРµР¶РґСѓ РєРѕС‚РѕСЂС‹РјРё РјРѕР¶РµС‚ СЃС‚РѕСЏС‚СЊ Р·РЅР°Рє СѓРЅРјРѕР¶РµРЅРёСЏ
 			for (int j = 0; j < insert_multiplication.size(); j += 2) {
 				if (tokens_after_preparing[i] == insert_multiplication[j] && tokens_after_preparing[i + 1] == insert_multiplication[j + 1]) {
 					Token multtoken = Token(Mult, "*", "*", i + 1);
@@ -51,20 +51,20 @@ public:
 		}
 	}
 
-	void iterator() {//находим пару для каждой скобки
+	void iterator() {//РЅР°С…РѕРґРёРј РїР°СЂСѓ РґР»СЏ РєР°Р¶РґРѕР№ СЃРєРѕР±РєРё
 		for (int i = 0; i < tokens_after_preparing.size(); i++) {
 			if (tokens_after_preparing[i] == Rpar) {
-				//ищем от позции i до 0 (в обратном порядке)
-				//при таком подходе правой скобке в пару приписывается ближайшая левая собка
+				//РёС‰РµРј РѕС‚ РїРѕР·С†РёРё i РґРѕ 0 (РІ РѕР±СЂР°С‚РЅРѕРј РїРѕСЂСЏРґРєРµ)
+				//РїСЂРё С‚Р°РєРѕРј РїРѕРґС…РѕРґРµ РїСЂР°РІРѕР№ СЃРєРѕР±РєРµ РІ РїР°СЂСѓ РїСЂРёРїРёСЃС‹РІР°РµС‚СЃСЏ Р±Р»РёР¶Р°Р№С€Р°СЏ Р»РµРІР°СЏ СЃРѕР±РєР°
 				findPair(i, 0, i);
 			}
 		}
 
-		//если осталась левая скобка без пары - выдаем ошибку
-		//нехватка пары для правой скобки обрабатывается в findPair()
+		//РµСЃР»Рё РѕСЃС‚Р°Р»Р°СЃСЊ Р»РµРІР°СЏ СЃРєРѕР±РєР° Р±РµР· РїР°СЂС‹ - РІС‹РґР°РµРј РѕС€РёР±РєСѓ
+		//РЅРµС…РІР°С‚РєР° РїР°СЂС‹ РґР»СЏ РїСЂР°РІРѕР№ СЃРєРѕР±РєРё РѕР±СЂР°Р±Р°С‚С‹РІР°РµС‚СЃСЏ РІ findPair()
 		for (int i = 0; i < tokens_after_preparing.size(); i++) {
 			if (tokens_after_preparing[i] == Lpar && tokens_after_preparing[i].GetPairPosition() == -1) {
-				std::cout << " Ожидалась правая закрывающая скобка ";
+				std::cout << " РћР¶РёРґР°Р»Р°СЃСЊ РїСЂР°РІР°СЏ Р·Р°РєСЂС‹РІР°СЋС‰Р°СЏ СЃРєРѕР±РєР° ";
 				exit(1);
 			}
 		}
@@ -72,20 +72,20 @@ public:
 	}
 
 	void findPair(int find_start, int find_end, int current_position) {
-		int index = -1; //позиция левой скобки
+		int index = -1; //РїРѕР·РёС†РёСЏ Р»РµРІРѕР№ СЃРєРѕР±РєРё
 		for (int i = find_start; i >= find_end; i--) {
 			if (tokens_after_preparing[i] == Lpar) {
 				index = i;
 				break;
 			}
 		}
-		//если левая скобка не найдена
+		//РµСЃР»Рё Р»РµРІР°СЏ СЃРєРѕР±РєР° РЅРµ РЅР°Р№РґРµРЅР°
 		if (index == -1) {
-			std::cout << "Ожидалась левая открывающая скобка ";
+			std::cout << "РћР¶РёРґР°Р»Р°СЃСЊ Р»РµРІР°СЏ РѕС‚РєСЂС‹РІР°СЋС‰Р°СЏ СЃРєРѕР±РєР° ";
 			exit(1);
 		}
-		//если у левой собки еще нет пары - содеиняем ее с правой скобкой
-		//иначе ищем дальше
+		//РµСЃР»Рё Сѓ Р»РµРІРѕР№ СЃРѕР±РєРё РµС‰Рµ РЅРµС‚ РїР°СЂС‹ - СЃРѕРґРµРёРЅСЏРµРј РµРµ СЃ РїСЂР°РІРѕР№ СЃРєРѕР±РєРѕР№
+		//РёРЅР°С‡Рµ РёС‰РµРј РґР°Р»СЊС€Рµ
 		if (tokens_after_preparing[index].GetPairPosition() == -1) {
 			tokens_after_preparing[index].SetPairPosition(current_position);
 			tokens_after_preparing[current_position].SetPairPosition(index);
@@ -128,7 +128,7 @@ public:
 	
 	void match(Token Curr_Tok, Tokentype Expected_Token) {
 		if (!(Curr_Tok == Expected_Token)) {
-			std::cout << " Ожидалось выражение " << Expected_Token.GetName() << " на позиции " << current_position + 1;
+			std::cout << "РћР¶РёРґР°Р»РѕСЃСЊ РІС‹СЂР°Р¶РµРЅРёРµ " << Expected_Token.GetName() << " РЅР° РїРѕР·РёС†РёРё " << current_position + 1;
 			exit(1);
 		}
 	}
@@ -151,7 +151,7 @@ public:
 	void RunMathFunction(Token Curr_Tok) {
 
 		current_position += 1;
-		match(tokens[current_position], Lpar); //после названия функции должна идти левая собка - sin(...)
+		match(tokens[current_position], Lpar); //РїРѕСЃР»Рµ РЅР°Р·РІР°РЅРёСЏ С„СѓРЅРєС†РёРё РґРѕР»Р¶РЅР° РёРґС‚Рё Р»РµРІР°СЏ СЃРѕР±РєР° - sin(...)
 		double local_result = Run(current_position, current_position);
 
 		if (Curr_Tok == Sin) temporary_result = sin(local_result);
@@ -175,16 +175,16 @@ public:
 
 	void RunBinOp(Token Curr_Tok) {
 		int end_parsing = current_position + 1;
-		double local_LHS = temporary_result;//в temporary_result хранится значение левого операнда
+		double local_LHS = temporary_result;//РІ temporary_result С…СЂР°РЅРёС‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ Р»РµРІРѕРіРѕ РѕРїРµСЂР°РЅРґР°
 
-		while (tokens[end_parsing].GetType().GetPrecedence() > Curr_Tok.GetType().GetPrecedence()) {//пока приорите текущего токена больше, чем у оператора - идем дальше
-																									//правая собка должна "останавливать" любой оператор
-																									//Пример: (5+2*2^6*8)^5. Для оператора + правый операнд - 2*2^6*8
-																									//если не занижать приоритет правой собки парсер пойдет дальше
-																									//и возьмет в правый операнд ^5, что очевидно неверно
+		while (tokens[end_parsing].GetType().GetPrecedence() > Curr_Tok.GetType().GetPrecedence()) {//РїРѕРєР° РїСЂРёРѕСЂРёС‚Рµ С‚РµРєСѓС‰РµРіРѕ С‚РѕРєРµРЅР° Р±РѕР»СЊС€Рµ, С‡РµРј Сѓ РѕРїРµСЂР°С‚РѕСЂР° - РёРґРµРј РґР°Р»СЊС€Рµ
+													    //РїСЂР°РІР°СЏ СЃРєРѕР±РєР° РґРѕР»Р¶РЅР° "РѕСЃС‚Р°РЅР°РІР»РёРІР°С‚СЊ" Р»СЋР±РѕР№ РѕРїРµСЂР°С‚РѕСЂ
+													    //РџСЂРёРјРµСЂ: (5+2*2^6*8)^5. Р”Р»СЏ РѕРїРµСЂР°С‚РѕСЂР° + РїСЂР°РІС‹Р№ РѕРїРµСЂР°РЅРґ - 2*2^6*8
+													    //РµСЃР»Рё РЅРµ Р·Р°РЅРёР¶Р°С‚СЊ РїСЂРёРѕСЂРёС‚РµС‚ РїСЂР°РІРѕР№ СЃРѕР±РєРё РїР°СЂСЃРµСЂ РїРѕР№РґРµС‚ РґР°Р»СЊС€Рµ
+													    //Рё РІРѕР·СЊРјРµС‚ РІ РїСЂР°РІС‹Р№ РѕРїРµСЂР°РЅРґ ^5, С‡С‚Рѕ РѕС‡РµРІРёРґРЅРѕ РЅРµРІРµСЂРЅРѕ
 
 														
-			if (tokens[end_parsing] == Lpar) {//берем все, что находится внутри скобок
+			if (tokens[end_parsing] == Lpar) {//Р±РµСЂРµРј РІСЃРµ, С‡С‚Рѕ РЅР°С…РѕРґРёС‚СЃСЏ РІРЅСѓС‚СЂРё СЃРєРѕР±РѕРє
 				end_parsing = tokens[end_parsing].GetPairPosition() + 1;
 			}
 			else end_parsing++;
@@ -194,7 +194,7 @@ public:
 
 		local_LHS = temporary_result;
 
-		if (Curr_Tok == Minus) {//для унарного минуса. Он находится либо в самом начале строки, либо заключен в скобки
+		if (Curr_Tok == Minus) {//РґР»СЏ СѓРЅР°СЂРЅРѕРіРѕ РјРёРЅСѓСЃР°. РћРЅ РЅР°С…РѕРґРёС‚СЃСЏ Р»РёР±Рѕ РІ СЃР°РјРѕРј РЅР°С‡Р°Р»Рµ СЃС‚СЂРѕРєРё, Р»РёР±Рѕ Р·Р°РєР»СЋС‡РµРЅ РІ СЃРєРѕР±РєРё
 			if (current_position == 0 || tokens[current_position - 1] == Lpar) local_LHS = 0;
 		}
 
@@ -222,7 +222,7 @@ public:
 				RunLParExp(tokens[position]);
 				position = current_position - 1;
 			}
-			//выражение перед правой скобкой уже обработано в RunLParExp()
+			//РІС‹СЂР°Р¶РµРЅРёРµ РїРµСЂРµРґ РїСЂР°РІРѕР№ СЃРєРѕР±РєРѕР№ СѓР¶Рµ РѕР±СЂР°Р±РѕС‚Р°РЅРѕ РІ RunLParExp()
 			else if (tokens[position] == Rpar) {
 				current_position += 1;
 			}
